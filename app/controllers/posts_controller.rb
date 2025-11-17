@@ -6,11 +6,11 @@ class PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     post.save
-    @post.user_id = current_user.id
-    redirect_to'/top'
+    redirect_to'/'
   end
 
   def index
+    @posts = Post.all
   end
 
   def show
