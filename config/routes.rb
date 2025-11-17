@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get 'posts/:id' => 'posts#show'
   patch 'posts/:id' => 'posts#update', as: 'update_post'
+  delete 'posts/:id' => 'posts#destroy', as: 'destroy_post'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
