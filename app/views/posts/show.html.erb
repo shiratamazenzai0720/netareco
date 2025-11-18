@@ -1,6 +1,11 @@
-<h2>タイトル</h2>
-    <p><%= @post.title %></p>
-<h2>本文</h2>
-    <p><%= @post.body %></p>
+<div>
+  <p>タイトル：<%= @post.title %></p>
+  <p>本文：<%= @post.body %></p>
+  <p>投稿ユーザー画像：<%= image_tag 'no_image.jpg' %></p>
+  <p>ユーザーネーム：<%= @post.user.name %></p>
+  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+</div>
     <%= link_to "編集", edit_post_path(@post.id) %>
     <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <br>
+    <%= link_to '一覧へ戻る', posts_path %>

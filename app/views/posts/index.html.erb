@@ -1,7 +1,10 @@
 <h1>投稿一覧</h1>
 <% @posts.each do |post| %>
-    <p>タイトル</p>
-    <span>
-        <%= link_to post.title, post_path(post.id) %>
-    </span>
+    <div>
+        <p>タイトル：<%= post.title %></p>
+        <p>本文：<%= post.body %></p>
+        <p>投稿ユーザー画像：<%= image_tag 'no_image.jpg' %></p>
+        <p>ユーザーネーム：<%= post.user.present? ? post.user.name : '未登録ユーザー' %></p>
+        <%= link_to '詳細へ', post_path(post.id) %>
+    </div>
 <% end %>

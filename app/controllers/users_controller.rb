@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
   def show
+    @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def edit
@@ -14,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
