@@ -12,9 +12,12 @@
   <% end %>
   <p>タイトル：<%= post.title %></p>
   <p>本文：<%= post.body %></p>
+  <%= link_to '詳細へ', post_path(post.id) %>
 </div>
 <% end %>
 
+<%= link_to '一覧へ戻る', posts_path %>
+<br>
 <% if @user == current_user %>
   <%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？" %>
 <% end %>
