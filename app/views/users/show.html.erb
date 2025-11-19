@@ -14,3 +14,7 @@
   <p>本文：<%= post.body %></p>
 </div>
 <% end %>
+
+<% if @user == current_user %>
+  <%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？" %>
+<% end %>
