@@ -15,6 +15,12 @@ class UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
 
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to new_user_session_path
+  end
+
   private
 
   def is_matching_login_user
