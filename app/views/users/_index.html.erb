@@ -1,0 +1,9 @@
+<% users.each do |user| %>
+    <div>
+        <tr>
+            <td><%= image_tag user.get_profile_image(50, 50) %></td>
+            <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
+            <td>ユーザーネーム：<%= user.present? ? user.name : '未登録ユーザー' %></p>
+        </tr>
+    </div>
+<% end %>
