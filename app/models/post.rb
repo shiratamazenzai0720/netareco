@@ -3,6 +3,7 @@ class Post < ApplicationRecord
     validates :body, presence: true
     has_one_attached :image  
     belongs_to :user
+    has_many :post_comments, dependent: :destroy
 
     def self.search_for(content, method)
         if method == 'perfect'
