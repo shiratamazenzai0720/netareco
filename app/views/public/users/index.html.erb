@@ -1,0 +1,9 @@
+<% @users.each do |user| %>
+　<div>
+    <%= image_tag user.get_profile_image(100,100) if user %>
+    <p>ユーザーネーム：<%= user.name %></p>
+    <%= link_to user_path(user.id) do %>
+        <p>詳細へ</p>
+    <% end %>
+　</div>
+<% end %>
