@@ -24,6 +24,10 @@ class UsersController < ApplicationController
     redirect_to new_user_registration_path
   end
 
+  def index
+    @users = User.all
+  end
+
   private
 
   def is_matching_login_user
