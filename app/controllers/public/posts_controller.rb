@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+  before_action :ensure_normal_user, only: [:new, :create]
   before_action :authenticate_user!,only: [:show, :edit]
 
   def new
@@ -54,6 +55,12 @@ class Public::PostsController < ApplicationController
     post = Post.find(params[:id])
     unless post.user_id == current_user.id
       redirect_to posts_path
+    end
+  end
+
+  def ensure_normal_user
+    if current_user.guest_user?
+      redirect_to posts_path, alert: "ゲストユーザーは投稿できません。"
     end
   end
 

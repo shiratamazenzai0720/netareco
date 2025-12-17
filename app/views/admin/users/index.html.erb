@@ -1,0 +1,8 @@
+<% @users.each do |user| %>
+    <div>
+    <p>投稿ユーザー画像：<%= image_tag user.get_profile_image(100, 100) if user %></p>
+    <p>ユーザーネーム：<%= user.present? ? user.name : '未登録ユーザー' %></p>
+    <%= link_to '詳細へ', user_path(user.id) %>
+    <%= link_to "退会", admin_user_path(user.id), method: :delete, "data-confirm" => "本当に退会しますか？" %>
+    </div>
+  <% end %>

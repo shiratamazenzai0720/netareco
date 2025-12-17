@@ -8,12 +8,16 @@
   </ul>
 <% end %>
 
-<%= form_with model: @post do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+<% unless current_user&.guest_user? %>
+  <%= form_with model: @post do |f| %>
+    <h4>タイトル</h4>
+    <%= f.text_field :title %>
 	
-  <h4>本文</h4>
-  <%= f.text_area :body %>
+    <h4>本文</h4>
+    <%= f.text_area :body %>
 	
-  <%= f.submit '投稿' %>
+    <%= f.submit '投稿' %>
+  <% end %>
+<% else %>
+  <p>ゲストユーザーは新規投稿ができません。</p>
 <% end %>

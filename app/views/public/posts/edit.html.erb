@@ -15,5 +15,5 @@
         <%= f.text_area :body %>
     <%= f.submit '更新' %>
     <br>
-    <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <%= link_to "削除", public_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
   <% end %>

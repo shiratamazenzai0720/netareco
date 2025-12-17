@@ -30,4 +30,9 @@ end
     resources :users, only: [:show, :edit, :update, :destroy, :index]
     get '/search', to: 'searches#search'
   end
+
+# ゲストユーザー
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 end
