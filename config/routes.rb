@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 #管理者側ルーディング
 namespace :admin do
   root to: "homes#top"
-  resources :posts, only: [:index, :show, :destroy, :edit, :update]
+  resources :posts, only: [:index, :show, :destroy, :edit, :update] do
+    resources :post_comments, only: [:destroy]
+  end
   resources :users, only: [:index, :show, :edit, :update, :destroy]
   get '/search', to: 'searches#search'
 end

@@ -12,7 +12,7 @@ class Admin::UsersController < ApplicationController
     def update
       @user = User.find(params[:id])
       if @user.update(user_params)
-      redirect_to user_path(@user.id)
+      redirect_to admin_user_path(@user.id)
       else
         render :edit
       end
@@ -21,7 +21,7 @@ class Admin::UsersController < ApplicationController
     def destroy
       user = User.find(params[:id])
       user.destroy
-      admin_users_path
+      redirect_to admin_users_path, notice: "ユーザーを退会させました。"
     end
   
     def index
@@ -29,13 +29,6 @@ class Admin::UsersController < ApplicationController
     end
   
     private
-  
-    def is_matching_login_user
-      user = User.find(params[:id])
-      unless user.id == current_user.id
-        redirect_to posts_path
-      end
-    end
   
     def user_params
       params.require(:user).permit(:name, :profile_image, :email)

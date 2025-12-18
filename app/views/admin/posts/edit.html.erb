@@ -8,12 +8,12 @@
   </ul>
 <% end %>
 
-  <%= form_with model: @post, method: :patch do |f| %>
+  <%= form_with(model: @post, url: admin_post_path(@post), method: :patch) do |f| %>
     <h4>タイトル</h4>
         <%= f.text_field :title %>
     <h4>本文</h4>
         <%= f.text_area :body %>
     <%= f.submit '更新' %>
     <br>
-    <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <%= link_to "削除", admin_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
   <% end %>
