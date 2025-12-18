@@ -1,0 +1,9 @@
+<% @users.each do |user| %>
+    <div>
+    <p>投稿ユーザー画像：<%= image_tag user.get_profile_image(100, 100) if user %></p>
+    <p>ユーザーネーム：<%= user.present? ? user.name : '未登録ユーザー' %></p>
+    <%= link_to admin_user_path(user.id) do %>
+      <p>詳細へ</p>
+    <% end %>
+    </div>
+  <% end %>

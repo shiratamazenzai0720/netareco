@@ -1,0 +1,35 @@
+<div>
+  <p>タイトル：<%= @post.title %></p>
+  <p>本文：<%= @post.body %></p>
+  <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image(100,100) %></p>
+  <p>ユーザーネーム：<%= @post.user.name %></p>
+  <%= link_to 'ユーザー詳細へ', user_path(@post.user) %>
+  <p><%= link_to "#{@post.post_comments.count} コメント", post_path(@post.id) %></p>
+  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+</div>
+
+<div>
+  <p>コメント件数:<%= @post.post_comments.count %></p>
+  <% @post.post_comments.each do |post_comment| %>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <% if post_comment.user == current_user %>
+      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+<% unless current_user&.guest_user? %>
+  <%= form_with(model: [ @post, @post.post_comments.build ]) do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+<% else %>
+  <p>ゲストユーザーはコメント投稿ができません。</p>
+<% end %>
+</div>
+<% if current_user == @post.user %>
+    <%= link_to "編集", edit_post_path(@post.id) %>
+    <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  <% end %>

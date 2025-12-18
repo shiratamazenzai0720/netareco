@@ -1,13 +1,16 @@
 class ApplicationController < ActionController::Base
-    before_action :authenticate_user!, except: [:user_session_path, :about]
     before_action :configure_permitted_parameters, if: :devise_controller?
 	
     def after_sign_in_path_for(resource)
+      if resource.is_a?(Admin)
+        admin_posts_path
+      else
         posts_path
+      end
     end
 
     def after_sign_out_path_for(resource)
-        about_path
+        user_session_path
     end
 
     protected

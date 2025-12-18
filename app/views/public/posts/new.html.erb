@@ -1,0 +1,23 @@
+<h1>新規投稿</h1>
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% unless current_user&.guest_user? %>
+  <%= form_with model: @post do |f| %>
+    <h4>タイトル</h4>
+    <%= f.text_field :title %>
+	
+    <h4>本文</h4>
+    <%= f.text_area :body %>
+	
+    <%= f.submit '投稿' %>
+  <% end %>
+<% else %>
+  <p>ゲストユーザーは新規投稿ができません。</p>
+<% end %>
