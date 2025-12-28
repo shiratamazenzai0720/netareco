@@ -1,9 +1,5 @@
-<% posts.each do |post| %>
-    <div>
-        <p>タイトル：<%= post.title %></p>
-        <p>本文：<%= post.body %></p>
-        <p>投稿ユーザー画像：<%= image_tag post.user.get_profile_image(100,100) if post.user %></p>
-        <p>ユーザーネーム：<%= post.user.present? ? post.user.name : '未登録ユーザー' %></p>
+<div>
+    <%= render 'layouts/index', posts: @posts %>
         <%= link_to '詳細へ', admin_post_path(post.id) %>
-    </div>
+</div>
 <% end %>
