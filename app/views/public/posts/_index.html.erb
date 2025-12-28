@@ -1,5 +1,6 @@
-<div>
-    <%= render 'layouts/index', posts: @posts %>
-    <%= link_to '詳細へ', admin_post_path(post.id) %>
-</div>
+<% posts.each do |post| %>
+    <div>
+        <%= render 'layouts/index', posts: @records %>
+        <%= link_to '詳細へ', post_path(post.id) %>
+    </div>
 <% end %>
