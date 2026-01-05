@@ -1,4 +1,9 @@
-<h2>プロフィール編集</h2>
+<div class="container">
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-3">
+      
+      <h2>プロフィール編集</h2>
 <% if @user.errors.any? %>
   <%= @user.errors.count %>件のエラーが発生しました
   <ul>
@@ -23,3 +28,6 @@
     <%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？" %>
   <% end %>
 <% end %>
+</div>
+</div>
+</div>
