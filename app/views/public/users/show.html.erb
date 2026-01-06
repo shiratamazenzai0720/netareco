@@ -1,8 +1,8 @@
 <div class="container mt-4">
   <div class="row">
-    <div class="col-12 col-sm-10 col-md-3 mx-auto shadow-lg rounded px-0 my-5 text-center">
-      <%= image_tag @user.get_profile_image(100,100), class: "img-fluid rounded-circle" %>
-      <h3><%= @user.name %></h3>
+    <div class="col-12 col-sm-10 col-md-3 mx-auto shadow-lg px-0 my-5 text-center">
+      <%= image_tag @user.get_profile_image(100,100), class: "img-fluid rounded-circle mt-4" %>
+      <h3 class="mb-3 mt-2"><%= @user.name %></h3>
       <% if @user == current_user %>
         <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-primary" %></p>
       <% end %>
@@ -15,7 +15,6 @@
         <div class="mb-3 p-3 border rounded">
           <h5><%= link_to post.title, post_path(post) %></h5>
           <p><%= truncate(post.body, length: 150) %></p>
-          <%= link_to '詳細へ', post_path(post), class: 'btn btn-primary btn-sm' %>
         </div>
       <% end %>
     </div>
