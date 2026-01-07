@@ -13,7 +13,6 @@
 
         <div class="d-flex justify-content-between align-items-center">
           <div>
-            <%= link_to "編集", edit_admin_post_path(@post.id), class: "btn btn-sm btn-success me-2" %>
             <%= link_to "削除", admin_post_path(@post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %>
           </div>
           <small class="text-muted">
