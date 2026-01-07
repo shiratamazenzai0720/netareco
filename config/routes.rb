@@ -27,7 +27,7 @@ end
     root to: "homes#top"
     get 'about' => 'homes#about'
     resources :posts, only: [:new, :create, :index, :show, :destroy, :edit, :update] do
-      resources :post_comments, only: [:create, :destroy]
+      resources :post_comments, only: [:create, :destroy, :update, :edit]
     end
     resources :users, only: [:show, :edit, :update, :destroy, :index]
     get '/search', to: 'searches#search'

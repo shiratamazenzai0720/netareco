@@ -1,0 +1,14 @@
+<div class="col-md-6 mx-auto mt-5 text-center">
+  <h1>What about <strong>ネタレコ</strong>  ??</h1>
+  <p>ネタレコは自分の好きなネタをレコードすることができるサービスです。</p>
+  <p>どんどんレコメンドして、笑いの輪を広げていきましょう！</p>
+  <div class="d-flex justify-content-center mb-3">
+    <a class="btn btn-success mr-3" href="/users/sign_up">新規登録</a>
+    <a class="btn btn-info" href="/users/sign_in">ログイン</a>
+  </div>
+  <li class="px-4" style="list-style:none;">
+    <%= form_with url: users_guest_sign_in_path, method: :post, local: true do %>
+      <%= submit_tag "ゲストログイン", class: "btn btn-secondary" %>
+    <% end %>
+  </li>
+</div>
