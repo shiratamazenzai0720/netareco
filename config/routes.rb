@@ -31,6 +31,7 @@ end
     end
     resources :users, only: [:show, :edit, :update, :destroy, :index]
     get '/search', to: 'searches#search'
+    get 'search_tag', to: 'posts#search_tag'
   end
 
 # ゲストユーザー

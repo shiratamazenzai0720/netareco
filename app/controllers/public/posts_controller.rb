@@ -10,15 +10,19 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    tag_list = params[:post][:tag_name].present? ? params[:post][:tag_name].split(',') : []
     if @post.save
+      @post.save_tags(tag_list)
       redirect_to post_path(@post.id)
     else
+      @posts = Post.all
       render :new
     end
   end
 
   def index
     @posts = Post.all
+    @tag_list = PostTag.all
   end
 
   def show
@@ -28,11 +32,15 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    existing_tag_names = @post.tags.pluck(:name)
+    @post.tag_name = existing_tag_names.join(',')
   end
 
   def update
     @post = Post.find(params[:id])
+    tag_list = params[:post][:tag_name].present? ? params[:post][:tag_name].split(',') : []
     if @post.update(post_params)
+      @post.save_tags(tag_list)
     redirect_to post_path(@post.id)
     else
       render :edit
