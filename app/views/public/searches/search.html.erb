@@ -4,4 +4,11 @@
 <% elsif @model == 'post' %>
   <h3 class="text-center">投稿 "<%= @content %>" の検索結果</h3>
   <%= render 'public/posts/index', posts: @records %>
+<% elsif @model == 'tag' %>
+  <h3 class="text-center">タグ "<%= @content %>" の検索結果</h3>
+  <% if @records.present? %>
+    <%= render 'public/posts/index', posts: @records %>
+  <% else %>
+    <p class="text-center">該当する投稿はありません。</p>
+  <% end %>
 <% end %>
