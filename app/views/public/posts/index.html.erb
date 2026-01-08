@@ -22,7 +22,9 @@
             </span>
             <span class="mx-2"> | </span>
             <span>
-              <%= post.tags.map(&:name).join(", ") %>
+              <% post.tags.each_with_index do |tag, i| %>
+               <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == post.tags.size - 1 %>
+              <% end %>
             </span>
           </div>
           <div class="text-end mt-2">
