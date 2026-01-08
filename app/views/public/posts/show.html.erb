@@ -10,15 +10,13 @@
           <p>タイトル : <%= @post.title %></p>
           <p>本文 : <%= @post.body %></p>
         </div>
-
-        <!-- タグ部分 -->
-        <p>
-        タグ：
+        <p>タグ：
         <% @post.tags.each_with_index do |tag, i| %>
           <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == @post.tags.size - 1 %>
         <% end %>
-      </p>
-        <!-- ここまで -->
+        </p>
+        <p><%= render "public/favorites/btn", post: @post %></p>
+
 
         <div class="d-flex justify-content-between align-items-center">
           <div>

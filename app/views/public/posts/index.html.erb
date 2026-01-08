@@ -21,6 +21,10 @@
               <%= "#{post.post_comments.count} コメント" %>
             </span>
             <span class="mx-2"> | </span>
+            <%= link_to post_favorites_path(post), method: :post, remote: true do %>
+              <span><%= render "public/favorites/btn", post: post %></span>
+            <% end %>
+            <span class="mx-2"> | </span>
             <span>
               <% post.tags.each_with_index do |tag, i| %>
                <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == post.tags.size - 1 %>

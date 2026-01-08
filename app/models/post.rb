@@ -6,6 +6,7 @@ class Post < ApplicationRecord
     has_many :post_comments, dependent: :destroy
     has_many :post_tags, dependent: :destroy
     has_many :tags, through: :post_tags
+    has_many :favorites, dependent: :destroy
     attr_accessor :tag_name
 
 
@@ -22,6 +23,10 @@ class Post < ApplicationRecord
         tag = Tag.find_or_create_by(name: new_name.strip)
         self.tags << tag unless self.tags.include?(tag)
       end
+    end
+
+    def favorited_by?(user)
+      favorites.where(user_id: user.id).exists?
     end
 
     def self.search_for(content, method)
