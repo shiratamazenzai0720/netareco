@@ -13,8 +13,14 @@
     <div class="col-12 col-sm-10 col-md-9 mx-auto shadow-lg rounded px-0 my-5">
       <% @posts.each do |post| %>
         <div class="mb-3 p-3 border rounded">
-          <h5><%= link_to post.title, post_path(post) %></h5>
-          <p><%= truncate(post.body, length: 150) %></p>
+        <p>タイトル : <%= link_to post.title, post_path(post) %></p>
+        <p>本文 : <%= truncate(post.body, length: 150) %></p>
+        <p><%= render "public/posts/star", post: post %></p>
+        <p>タグ：
+          <% post.tags.each_with_index do |tag, i| %>
+            <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == post.tags.size - 1 %>
+          <% end %>
+        </p>
         </div>
       <% end %>
     </div>
