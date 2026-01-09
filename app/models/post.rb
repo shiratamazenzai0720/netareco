@@ -8,6 +8,14 @@ class Post < ApplicationRecord
     has_many :tags, through: :post_tags
     has_many :favorites, dependent: :destroy
     attr_accessor :tag_name
+    scope :latest, -> {order(created_at: :desc)}
+    scope :old, -> {order(created_at: :asc)}
+    scope :rate, -> {order(rate: :desc)}
+    scope :favorites_count, -> {
+      left_joins(:favorites)
+      .group(:id)
+      .order('COUNT(favorites.id) DESC')
+    }
 
 
     def save_tags(savepost_tags)

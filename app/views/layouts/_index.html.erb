@@ -1,6 +1,12 @@
 <div class="container mt-4 mb-5">
   <div class="row justify-content-center">
     <div class="col-md-9">
+    <!--ソート機能-->
+    <%= link_to '新しい順', posts_path(latest: "true") %>
+    |<%= link_to '古い順', posts_path(old: "true") %>
+    |<%= link_to '評価の高い順', posts_path(rate: "true") %>
+    |<%= link_to 'いいねの多い順', posts_path(favorites_count: "true") %>
+    <!--ソート機能ここまで-->
         <% if posts.present? %>
             <% posts.each do |post| %>
                 <div class="mb-3 p-3 border rounded shadow-sm">
