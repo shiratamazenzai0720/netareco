@@ -14,7 +14,8 @@
     <div class="col-12 col-sm-10 col-md-9 mx-auto shadow-lg rounded px-0 my-5">
       <% @posts.each do |post| %>
         <div class="mb-3 p-3 border rounded">
-          <h5><%= link_to post.title, admin_post_path(post) %></h5>
+          <h5><%= link_to post.comedian_name, admin_post_path(post) %></h5>
+          <p><%= truncate(post.title) %></p>
           <p><%= truncate(post.body, length: 150) %></p>
         </div>
       <% end %>

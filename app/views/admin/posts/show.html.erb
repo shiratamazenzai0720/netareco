@@ -8,8 +8,9 @@
           <strong><%= @post.user.present? ? @post.user.name : '未登録ユーザー' %></strong>
         </div>
 
-        <p>タイトル : <%= @post.title %></p>
-        <p>本文 : <%= @post.body %></p>
+        <p>芸人名 : <%= @post.comedian_name %></p>
+        <p>ネタ : <%= @post.title %></p>
+        <p>感想 : <%= @post.body %></p>
 
         <div class="d-flex justify-content-between align-items-center">
           <div>

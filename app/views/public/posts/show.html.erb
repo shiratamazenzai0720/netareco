@@ -7,7 +7,8 @@
           <strong><%= @post.user.name %></strong>
         </div>
         <div class="content-area">
-          <p>タイトル : <%= @post.title %></p>
+          <p>芸人名 : <%= @post.comedian_name %></p>
+          <p>ネタ : <%= @post.title %></p>
           <p>本文 : <%= @post.body %></p>
         </div>
         <p><%= render "public/posts/star", post: @post %></p>

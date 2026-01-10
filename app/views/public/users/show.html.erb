@@ -13,8 +13,9 @@
     <div class="col-12 col-sm-10 col-md-9 mx-auto shadow-lg rounded px-0 my-5">
       <% @posts.each do |post| %>
         <div class="mb-3 p-3 border rounded">
-        <p>タイトル : <%= link_to post.title, post_path(post) %></p>
-        <p>本文 : <%= truncate(post.body, length: 150) %></p>
+        <p>芸人名 : <%= link_to post.comedian_name, post_path(post) %></p>
+        <p>ネタ : <%= link_to post.title %></p>
+        <p>感想 : <%= truncate(post.body, length: 150) %></p>
         <p><%= render "public/posts/star", post: post %></p>
         <p>タグ：
           <% post.tags.each_with_index do |tag, i| %>
