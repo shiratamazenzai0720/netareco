@@ -35,18 +35,19 @@ class Post < ApplicationRecord
     end
 
     def favorited_by?(user)
+      return false if user.nil?
       favorites.where(user_id: user.id).exists?
     end
 
     def self.search_for(content, method)
-        if method == 'perfect'
-          Post.where(title: content)
-        elsif method == 'forward'
-          Post.where('title LIKE ?', content+'%')
-        elsif method == 'backward'
-          Post.where('title LIKE ?', '%'+content)
-        else
-          Post.where('title LIKE ?', '%'+content+'%')
-        end
+      if method == 'perfect'
+        where('comedian_name = :content OR title = :content OR body = :content', content: content)
+      elsif method == 'forward'
+        where('comedian_name LIKE :content OR title LIKE :content OR body LIKE :content', content: "#{content}%")
+      elsif method == 'backward'
+        where('comedian_name LIKE :content OR title LIKE :content OR body LIKE :content', content: "%#{content}")
+      else
+        where('comedian_name LIKE :content OR title LIKE :content OR body LIKE :content', content: "%#{content}%")
       end
+    end
 end

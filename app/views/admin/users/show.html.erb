@@ -10,15 +10,34 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-12 col-sm-10 col-md-9 mx-auto shadow-lg rounded px-0 my-5">
-      <% @posts.each do |post| %>
-        <div class="mb-3 p-3 border rounded">
-          <h5><%= link_to post.comedian_name, admin_post_path(post) %></h5>
-          <p><%= truncate(post.title) %></p>
-          <p><%= truncate(post.body, length: 150) %></p>
-        </div>
-      <% end %>
+  <% if @posts.present? %>
+    <div class="row">
+      <div class="col-12 col-sm-10 col-md-9 mx-auto shadow-lg rounded px-0 my-5">
+        <% @posts.each do |post| %>
+          <div class="mb-3 p-3 border rounded">
+            <p>芸人名 : <%= truncate(post.comedian_name) %></p>
+            <p>ネタ : <%= truncate(post.title) %></p>
+            <p>感想 : <%= truncate(post.body, length: 150) %></p>
+            <p><%= render "public/posts/star", post: post %></p>
+            <div class="d-flex justify-content-start align-items-center text-muted small mb-3">
+              <span>
+                <%= "#{post.post_comments.count} コメント" %>
+              </span>
+              <span class="mx-2"> | </span>
+              <span>
+                <% post.tags.each_with_index do |tag, i| %>
+                  <%= link_to tag.name, admin_search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == post.tags.size - 1 %>
+                <% end %>
+              </span>
+            </div>
+
+
+            <%= link_to '詳細へ', admin_post_path(post.id), class: "btn btn-sm btn-outline-primary" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% else %>
+    <p class="text-center text-muted">投稿がまだありません</p>
+  <% end %>
 </div>
