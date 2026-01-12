@@ -5,11 +5,23 @@
 
         <div class="d-flex align-items-center mb-2">
           <%= image_tag @post.user.get_profile_image(50, 50), class: "rounded-circle me-3" if @post.user %>
-          <strong><%= @post.user.present? ? @post.user.name : '未登録ユーザー' %></strong>
+          <strong><%= link_to @post.user.name, admin_user_path(@post.user) %></strong>
         </div>
 
-        <p>タイトル : <%= @post.title %></p>
-        <p>本文 : <%= @post.body %></p>
+        <p>芸人名 : <%= @post.comedian_name %></p>
+        <p>ネタ : <%= @post.title %></p>
+        <p>感想 : <%= @post.body %></p>
+        <p><%= render "public/posts/star", post: @post %></p>
+
+        <div class="content-area mb-3">
+          <span><%= render "public/favorites/btn", post: @post %></span>
+          <span class="mx-2"> | </span>
+          <span>
+            <% @post.tags.each_with_index do |tag, i| %>
+              <%= link_to tag.name, admin_search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == @post.tags.size - 1 %>
+            <% end %>
+          </span>
+        </div>
 
         <div class="d-flex justify-content-between align-items-center">
           <div>
@@ -20,6 +32,8 @@
           </small>
         </div>
 
+        <!--コメント部分-->
+        
         <div class="container my-4 p-0">
           <p class="fw-bold mb-3">コメント件数: <%= @post.post_comments.count %></p>
 
@@ -29,7 +43,7 @@
                 <div class="d-flex align-items-center mb-2">
                   <% if post_comment.user %>
                     <%= image_tag post_comment.user.get_profile_image(50, 50), class: "rounded-circle me-3" %>
-                    <strong><%= post_comment.user.name %></strong>
+                    <strong><%= link_to post_comment.user.name, admin_user_path(post_comment.user) %></strong>
                   <% else %>
                     <strong>未登録ユーザー</strong>
                   <% end %>

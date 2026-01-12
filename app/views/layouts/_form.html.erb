@@ -3,14 +3,14 @@
     <% if admin_signed_in? %>
       <%= form_with url: admin_search_path, method: :get, local: true, class: "form-inline" do |f| %>
         <%= f.text_field :content, placeholder: 'キーワードを入力', class: "form-control mr-2" %>
-        <%= f.select :model, options_for_select({ "ユーザー" => "user", "投稿" => "post" }), {}, class: "form-control mr-2" %>
+        <%= f.select :model, options_for_select({ "ユーザー" => "user", "キーワード" => "post", "タグ" => "tag" }), {}, class: "form-control mr-2" %>
         <%= f.select :method, options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }), {}, class: "form-control mr-2" %>
         <%= f.submit '検索', class: "btn btn-primary" %>
       <% end %>
     <% elsif user_signed_in? %>
       <%= form_with url: search_path, method: :get, local: true, class: "form-inline" do |f| %>
         <%= f.text_field :content, placeholder: 'キーワードを入力', class: "form-control mr-2" %>
-        <%= f.select :model, options_for_select({ "ユーザー" => "user", "投稿" => "post", "タグ" => "tag" }), {}, class: "form-control mr-2" %>
+        <%= f.select :model, options_for_select({ "ユーザー" => "user", "キーワード" => "post", "タグ" => "tag" }), {}, class: "form-control mr-2" %>
         <%= f.select :method, options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }), {}, class: "form-control mr-2" %>
         <%= f.submit '検索', class: "btn btn-primary" %>
       <% end %>

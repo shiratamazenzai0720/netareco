@@ -15,7 +15,18 @@ class Admin::PostsController < ApplicationController
     end
   
     def index
-      @posts = Post.all
+      @tag_list = PostTag.all
+      if params[:latest]
+        @posts = Post.latest
+      elsif params[:old]
+        @posts = Post.old
+      elsif params[:rate]
+        @posts = Post.rate
+      elsif params[:favorites_count]
+        @posts = Post.favorites_count
+      else
+        @posts = Post.all
+      end
     end
   
     def show
@@ -45,6 +56,6 @@ class Admin::PostsController < ApplicationController
     private
     
     def post_params
-      params.require(:post).permit(:title,:body)
+      params.require(:post).permit(:title, :body, :comedian_name)
     end
 end

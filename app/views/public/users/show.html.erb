@@ -9,20 +9,34 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-12 col-sm-10 col-md-9 mx-auto shadow-lg rounded px-0 my-5">
+  <% if @posts.present? %>
+    <div class="row">
       <% @posts.each do |post| %>
-        <div class="mb-3 p-3 border rounded">
-        <p>タイトル : <%= link_to post.title, post_path(post) %></p>
-        <p>本文 : <%= truncate(post.body, length: 150) %></p>
-        <p><%= render "public/posts/star", post: post %></p>
-        <p>タグ：
-          <% post.tags.each_with_index do |tag, i| %>
-            <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == post.tags.size - 1 %>
-          <% end %>
-        </p>
+        <div class="col-12 col-md-4 mb-4">
+          <div class="p-3 border rounded h-100 d-flex flex-column shadow">
+            <p>芸人名 : <%= truncate(post.comedian_name) %></p>
+            <p>ネタ : <%= truncate(post.title) %></p>
+            <p>感想 : <%= truncate(post.body, length: 150) %></p>
+            <p><%= render "public/posts/star", post: post %></p>
+            <div class="d-flex justify-content-start align-items-center text-muted small mb-3">
+              <span>
+                <%= "#{post.post_comments.count} コメント" %>
+              </span>
+              <span class="mx-2"> | </span>
+              <span><%= render "public/favorites/btn", post: post %></span>
+              <span class="mx-2"> | </span>
+              <span>
+                <% post.tags.each_with_index do |tag, i| %>
+                  <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == post.tags.size - 1 %>
+                <% end %>
+              </span>
+            </div>
+            <%= link_to '詳細へ', post_path(post.id), class: "btn btn-sm btn-outline-primary" %>
+          </div>
         </div>
       <% end %>
     </div>
-  </div>
+  <% else %>
+    <p class="text-center text-muted">投稿がまだありません</p>
+  <% end %>
 </div>

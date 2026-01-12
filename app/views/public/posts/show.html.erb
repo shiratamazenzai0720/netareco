@@ -4,21 +4,24 @@
       <div class="mb-3 p-3 border rounded">
         <div class="d-flex align-items-center mb-2">
           <%= image_tag @post.user.get_profile_image(50, 50), class: "rounded-circle me-3" %>
-          <strong><%= @post.user.name %></strong>
+          <strong><%= link_to @post.user.name, user_path(@post.user) %></strong>
         </div>
         <div class="content-area">
-          <p>タイトル : <%= @post.title %></p>
-          <p>本文 : <%= @post.body %></p>
+          <p>芸人名 : <%= @post.comedian_name %></p>
+          <p>ネタ : <%= @post.title %></p>
+          <p>感想 : <%= @post.body %></p>
         </div>
         <p><%= render "public/posts/star", post: @post %></p>
-        <p>タグ：
-        <% @post.tags.each_with_index do |tag, i| %>
-          <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == @post.tags.size - 1 %>
-        <% end %>
-        </p>
         
-        <p><%= render "public/favorites/btn", post: @post %></p>
-
+        <div class="content-area mb-3">
+          <span><%= render "public/favorites/btn", post: @post %></span>
+          <span class="mx-2"> | </span>
+          <span>
+            <% @post.tags.each_with_index do |tag, i| %>
+              <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == @post.tags.size - 1 %>
+            <% end %>
+          </span>
+        </div>
 
         <div class="d-flex justify-content-between align-items-center">
           <div>
@@ -42,7 +45,7 @@
             <div class="d-flex align-items-center mb-2">
               <% if post_comment.user %>
                 <%= image_tag post_comment.user.get_profile_image(50, 50), class: "rounded-circle me-3" %>
-                <strong><%= post_comment.user.name %></strong>
+                <strong><%= link_to post_comment.user.name, user_path(post_comment.user) %></strong>
               <% end %>
             </div>
     
