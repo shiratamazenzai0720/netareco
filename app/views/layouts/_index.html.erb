@@ -30,9 +30,18 @@
                             <%= "#{post.post_comments.count} コメント" %>
                             </span>
                             <span class="mx-2"> | </span>
-                            <%= link_to post_favorites_path(post), method: :post, remote: true do %>
+
+                            <!--ファボ-->
+                            <% if user_signed_in? && !current_user.guest_user? %>
+                              <%= link_to post_favorites_path(post), method: :post, remote: true do %>
                                 <span><%= render "public/favorites/btn", post: post %></span>
+                              <% end %>
+                            <% else %>
+                              <span>
+                                <%= render "public/favorites/btn", post: post %>
+                              </span>
                             <% end %>
+                          <!--ここまで-->
                             <span class="mx-2"> | </span>
                             <span>
                             <% post.tags.each_with_index do |tag, i| %>

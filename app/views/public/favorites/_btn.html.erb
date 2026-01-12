@@ -1,11 +1,18 @@
-<% if post.favorited_by?(current_user) %>
-  <%= link_to post_favorites_path(post), method: :delete,  style: "color: red;" do %>
-    <i class="fas fa-heart" aria-hidden="true"></i>
-    <%= post.favorites.count %>
+<% if user_signed_in? && !current_user.guest_user? && !current_user.admin? %>
+  <% if post.favorited_by?(current_user) %>
+    <%= link_to post_favorites_path(post), method: :delete, style: "color: red;" do %>
+      <i class="fa-solid fa-face-grin-squint-tears" aria-hidden="true"></i>
+      <%= post.favorites.count %>
+    <% end %>
+  <% else %>
+    <%= link_to post_favorites_path(post), method: :post do %>
+      <i class="fa-regular fa-face-grin-squint" aria-hidden="true"></i>
+      <%= post.favorites.count %>
+    <% end %>
   <% end %>
 <% else %>
-  <%= link_to post_favorites_path(post), method: :post do %>
-    <i class="fas fa-heart" aria-hidden="true"></i>
+  <span>
+    <i class="fa-regular fa-face-grin-squint" aria-hidden="true"></i>
     <%= post.favorites.count %>
-  <% end %>
+  </span>
 <% end %>

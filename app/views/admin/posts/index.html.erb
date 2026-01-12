@@ -1,6 +1,6 @@
 <div class="container mt-4 mb-5">
   <div class="row justify-content-center">
-    <div class="col-md-9">
+    <div class="col-md-9 mb-2">
 
     <!--ソート機能-->
       <%= link_to '新しい順', admin_posts_path(latest: "true") %>
@@ -31,9 +31,19 @@
               <%= "#{post.post_comments.count} コメント" %>
             </span>
             <span class="mx-2"> | </span>
-            <%= link_to post_favorites_path(post), method: :post, remote: true do %>
-              <span><%= render "public/favorites/btn", post: post %></span>
+            
+          <!--いいね-->
+            <% if user_signed_in? && !current_user.guest_user? %>
+              <%= link_to post_favorites_path(post), method: :post, remote: true do %>
+                <span><%= render "public/favorites/btn", post: post %></span>
+              <% end %>
+            <% else %>
+              <span>
+                <%= render "public/favorites/btn", post: post %>
+              </span>
             <% end %>
+          <!--ここまで-->
+
             <span class="mx-2"> | </span>
             <span>
               <% post.tags.each_with_index do |tag, i| %>

@@ -12,11 +12,16 @@
         <p>ネタ : <%= @post.title %></p>
         <p>感想 : <%= @post.body %></p>
         <p><%= render "public/posts/star", post: @post %></p>
-        <p>タグ：
-        <% @post.tags.each_with_index do |tag, i| %>
-          <%= link_to tag.name, admin_search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == @post.tags.size - 1 %>
-        <% end %>
-        </p>
+
+        <div class="content-area mb-3">
+          <span><%= render "public/favorites/btn", post: @post %></span>
+          <span class="mx-2"> | </span>
+          <span>
+            <% @post.tags.each_with_index do |tag, i| %>
+              <%= link_to tag.name, admin_search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == @post.tags.size - 1 %>
+            <% end %>
+          </span>
+        </div>
 
         <div class="d-flex justify-content-between align-items-center">
           <div>
