@@ -9,12 +9,12 @@
         <div class="content-area">
           <p>芸人名 : <%= @post.comedian_name %></p>
           <p>ネタ : <%= @post.title %></p>
-          <p>感想 : <%= @post.body %></p>
+          <p>感想 : <%= simple_format(@post.body) %></p>
         </div>
-        <p><%= render "public/posts/star", post: @post %></p>
+        <p><%= render "layouts/star", post: @post %></p>
         
         <div class="content-area mb-3">
-          <span><%= render "public/favorites/btn", post: @post %></span>
+          <span><%= render "layouts/btn", post: @post %></span>
           <span class="mx-2"> | </span>
           <span>
             <% @post.tags.each_with_index do |tag, i| %>

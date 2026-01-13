@@ -20,8 +20,8 @@
             <h5 class="mb-0"><%= post.comedian_name %></h5>
           </div>
           <p class="mb-2">ネタ：<%= post.title %></p>
-          <p class="mb-2"><%= post.body %></p>
-          <p><%= render "public/posts/star", post: post %></p>
+          <p class="mb-2"><%= simple_format(@post.body) %></p>
+          <p><%= render "layouts/star", post: post %></p>
           <div class="d-flex justify-content-start align-items-center text-muted small">
             <span class="me-3">
               <%= post.user.present? ? post.user.name : '未登録ユーザー' %>
@@ -35,11 +35,11 @@
           <!--ファボ-->
             <% if user_signed_in? && !current_user.guest_user? %>
               <%= link_to post_favorites_path(post), method: :post, remote: true do %>
-                <span><%= render "public/favorites/btn", post: post %></span>
+                <span><%= render "layouts/btn", post: post %></span>
               <% end %>
             <% else %>
               <span>
-                <%= render "public/favorites/btn", post: post %>
+                <%= render "layouts/btn", post: post %>
               </span>
             <% end %>
           <!--ここまで-->

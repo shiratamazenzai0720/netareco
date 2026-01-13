@@ -17,13 +17,13 @@
             <p>芸人名 : <%= truncate(post.comedian_name) %></p>
             <p>ネタ : <%= truncate(post.title) %></p>
             <p>感想 : <%= truncate(post.body, length: 150) %></p>
-            <p><%= render "public/posts/star", post: post %></p>
+            <p><%= render "layouts/star", post: post %></p>
             <div class="d-flex justify-content-start align-items-center text-muted small mb-3">
               <span>
                 <%= "#{post.post_comments.count} コメント" %>
               </span>
               <span class="mx-2"> | </span>
-              <span><%= render "public/favorites/btn", post: post %></span>
+              <span><%= render "layouts/btn", post: post %></span>
               <span class="mx-2"> | </span>
               <span>
                 <% post.tags.each_with_index do |tag, i| %>
