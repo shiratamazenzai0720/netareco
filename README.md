@@ -17,7 +17,13 @@
 ・自分の好きなネタを布教したいとき
 ​
 ## 設計書
-後ほど作成予定
+- UI Flows：(
+https://drive.google.com/file/d/11b8xgc-lpD9WQ7KGxZT5dIMugAmFLVq9/view?usp=drive_link)
+- ER図：(
+https://drive.google.com/file/d/1HiA2YSquhR0fA9Zl4lIzgDw04TmBf0w_/view?usp=drive_link)
+- テーブル定義書：(https://docs.google.com/spreadsheets/d/15kKhZsx7FvD2MVb0o4JA4TGyn_yOTZOyiiTdcIuKnZk/edit?gid=1044500859#gid=1044500859)
+- アプリケーション詳細設計書：(
+https://docs.google.com/spreadsheets/d/1L7FlNY8pQa2o5J6M1tDniHd4Pe2MYa7JT7F2dVwX1Y0/edit?gid=549108681#gid=549108681)
 ​
 ## 開発環境
 - OS：Windows
