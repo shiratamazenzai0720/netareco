@@ -4,16 +4,17 @@
       <div class="mb-3 p-3 border rounded">
         <div class="d-flex align-items-center mb-2">
           <%= image_tag @post.user.get_profile_image(50, 50), class: "rounded-circle me-3" %>
-          <strong><%= link_to @post.user.name, user_path(@post.user) %></strong>
+          <h5 class="mb-0"><%= @post.comedian_name %></h5>
         </div>
         <div class="content-area">
-          <p>芸人名 : <%= @post.comedian_name %></p>
           <p>ネタ : <%= @post.title %></p>
-          <p>感想 : <%= simple_format(@post.body) %></p>
+          <p><%= simple_format(@post.body) %></p>
         </div>
         <p><%= render "layouts/star", post: @post %></p>
         
         <div class="content-area mb-3">
+          <span><%= link_to @post.user.name, user_path(@post.user) %></span>
+          <span class="mx-2"> | </span>
           <span><%= render "layouts/btn", post: @post %></span>
           <span class="mx-2"> | </span>
           <span>
