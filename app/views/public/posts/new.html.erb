@@ -22,7 +22,7 @@
             <%= form_with model: @post do |f| %>
               <label for="inputComedian">芸人名</label>
                 <%= f.text_field :comedian_name, autofocus: true, id:"inputComedian",  class: "form-control mb-3"%>
-              <label for="inputTitle">タイトル</label>
+              <label for="inputTitle">ネタ</label>
                 <%= f.text_field :title, autofocus: true, id:"inputTitle",  class: "form-control mb-3"%>
               <label for="inputbody">感想</label>
                 <%= f.text_area :body, rows: 3, autofocus: true, id:"inputbody",  class: "form-control mb-3"%>

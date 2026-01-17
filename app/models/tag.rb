@@ -17,7 +17,7 @@ class Tag < ApplicationRecord
         tags = Tag.where('name LIKE ?', '%' + content + '%')
       end
       
-      return tags.inject(init = []) {|result, tag| result + tag.posts}
+      Post.joins(:tags).where(tags: { id: tags.pluck(:id) }).distinct
       
     end
   end

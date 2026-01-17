@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  scope :latest, -> { order(created_at: :desc) }
+  scope :old, -> { order(created_at: :asc) }
+
   enum role: { general: 'public', admin: 'admin' }
 
   def get_profile_image(width, height)
@@ -39,7 +42,7 @@ class User < ApplicationRecord
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.name = "guestuser"
+      user.name = "ゲストユーザー"
     end
   end
 

@@ -5,16 +5,17 @@
 
         <div class="d-flex align-items-center mb-2">
           <%= image_tag @post.user.get_profile_image(50, 50), class: "rounded-circle me-3" if @post.user %>
-          <strong><%= link_to @post.user.name, admin_user_path(@post.user) %></strong>
+          <h5 class="mb-0"><%= @post.comedian_name %></h5>
         </div>
-
-        <p>芸人名 : <%= @post.comedian_name %></p>
-        <p>ネタ : <%= @post.title %></p>
-        <p>感想 : <%= @post.body %></p>
-        <p><%= render "public/posts/star", post: @post %></p>
-
+        <div class="content-area">
+          <p>ネタ : <%= @post.title %></p>
+          <p><%= simple_format(@post.body) %></p>
+        </div>
+          <p><%= render "layouts/star", post: @post %></p>
         <div class="content-area mb-3">
-          <span><%= render "public/favorites/btn", post: @post %></span>
+          <span><%= link_to @post.user.name, admin_user_path(@post.user)  %></span>
+          <span class="mx-2"> | </span>
+          <span><%= render "layouts/btn", post: @post %></span>
           <span class="mx-2"> | </span>
           <span>
             <% @post.tags.each_with_index do |tag, i| %>

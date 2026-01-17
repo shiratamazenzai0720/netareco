@@ -22,16 +22,22 @@ class Public::PostsController < ApplicationController
 
   def index
     @tag_list = PostTag.all
+    @posts = Post.all
+  
+    if params[:tag_name].present?
+      @posts = @posts.joins(:tags).where(tags: { name: params[:tag_name] })
+    end
+  
     if params[:latest]
-      @posts = Post.latest
+      @posts = @posts.latest
     elsif params[:old]
-      @posts = Post.old
+      @posts = @posts.old
     elsif params[:rate]
-      @posts = Post.rate
+      @posts = @posts.rate
     elsif params[:favorites_count]
-      @posts = Post.favorites_count
+      @posts = @posts.favorites_count
     else
-      @posts = Post.all
+      @posts = @posts.latest
     end
   end
 
