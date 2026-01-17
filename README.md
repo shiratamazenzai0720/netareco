@@ -35,4 +35,3 @@ https://docs.google.com/spreadsheets/d/1L7FlNY8pQa2o5J6M1tDniHd4Pe2MYa7JT7F2dVwX
 ## 使用素材
 - アイコン素材として以下を使用
     - Font Awesome(https://fontawesome.com/)
-    - icooon-mono(https://icooon-mono.com/)
