@@ -2,7 +2,7 @@
   <h3 class="text-center">ユーザー "<%= @content %>" の検索結果</h3>
   <%= render 'admin/users/index', users: @records %>
 <% elsif @model == 'post' %>
-  <h3 class="text-center">投稿 "<%= @content %>" の検索結果</h3>
+  <h3 class="text-center">キーワード "<%= @content %>" の検索結果</h3>
   <%= render 'admin/posts/index', posts: @records %>
 <% elsif @model == 'tag' %>
   <h3 class="text-center">タグ "<%= @content %>" の検索結果</h3>

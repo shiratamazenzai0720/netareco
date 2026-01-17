@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  scope :latest, -> { order(created_at: :desc) }
+  scope :old, -> { order(created_at: :asc) }
+
   enum role: { general: 'public', admin: 'admin' }
 
   def get_profile_image(width, height)
