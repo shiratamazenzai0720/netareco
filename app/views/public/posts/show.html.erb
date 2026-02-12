@@ -3,7 +3,8 @@
     <div class="col-12 col-sm-10 col-md-9 mx-auto shadow-lg rounded px-0 my-5 bg-white">
       <div class="mb-3 p-3 border rounded">
         <div class="d-flex align-items-center mb-2">
-          <%= image_tag @post.user.get_profile_image(50, 50), class: "rounded-circle me-3" %>
+          <% post_user_image_path = @post.user.get_profile_image(50, 50) %>
+          <%= image_tag post_user_image_path, class: "rounded-circle me-3", size: "50x50" %>
           <h5 class="mb-0"><%= @post.comedian_name %></h5>
         </div>
         <div class="content-area">
@@ -45,7 +46,8 @@
           <div class="card-body">
             <div class="d-flex align-items-center mb-2">
               <% if post_comment.user %>
-                <%= image_tag post_comment.user.get_profile_image(50, 50), class: "rounded-circle me-3" %>
+                <% post_user_image_path = @post.user.get_profile_image(50, 50) %>
+                <%= image_tag post_user_image_path, class: "rounded-circle me-3", size: "50x50" %>
                 <strong><%= link_to post_comment.user.name, user_path(post_comment.user) %></strong>
               <% end %>
             </div>

@@ -1,7 +1,8 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-12 col-sm-10 col-md-3 mx-auto shadow-lg px-0 my-5 text-center">
-      <%= image_tag @user.get_profile_image(100,100), class: "img-fluid rounded-circle mt-4" %>
+      <% profile_image_path = @user.get_profile_image(100, 100) %>
+      <%= image_tag profile_image_path, class: "img-fluid rounded-circle mt-4", size: "100x100" %>
       <h3 class="mb-3 mt-2"><%= @user.name %></h3>
       <%= link_to "退会", admin_user_path(@user.id), method: :delete, data: { confirm: "本当に退会させますか？" }, class: "btn btn-danger ms-3 mb-4" %>
       <% if @user == current_user %>

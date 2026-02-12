@@ -19,7 +19,8 @@
           <% end %>
 
           <div class="mb-4 text-center">
-            <%= image_tag @user.get_profile_image(100,100), class: "img-fluid rounded-circle" %>
+            <% profile_image_path = @user.get_profile_image(100, 100) %>
+            <%= image_tag profile_image_path, class: "img-fluid rounded-circle mt-4", size: "100x100" %>
           </div>
 
           <%= form_with model: @user do |f| %>

@@ -4,7 +4,8 @@
       <div class="mb-3 p-3 border rounded">
 
         <div class="d-flex align-items-center mb-2">
-          <%= image_tag @post.user.get_profile_image(50, 50), class: "rounded-circle me-3" if @post.user %>
+          <% post_user_image_path = @post.user.get_profile_image(50, 50) %>
+          <%= image_tag post_user_image_path, class: "rounded-circle me-3", size: "50x50" %>
           <h5 class="mb-0"><%= @post.comedian_name %></h5>
         </div>
         <div class="content-area">
