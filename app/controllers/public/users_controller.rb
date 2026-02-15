@@ -31,6 +31,12 @@ class Public::UsersController < ApplicationController
     @users = User.all
   end
 
+  def favorites
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.includes(:user).where(id: favorites)
+  end
+
   private
 
   def is_matching_login_user
