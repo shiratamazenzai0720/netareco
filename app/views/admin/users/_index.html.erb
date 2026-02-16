@@ -3,14 +3,18 @@
     <div class="col-md-9">
       <% if users.present? %>
         <% users.each do |user| %>
-          <div class="mb-3 p-3 border rounded shadow-sm">
+          <div class="mb-3 p-3 border rounded shadow-sm bg-white">
             <div class="d-flex align-items-center mb-2">
               <% if user.present? && user.get_profile_image(50, 50) %>
-                <% image_path = post.user.get_profile_image(50, 50) %>
+                <% image_path = user.get_profile_image(50, 50) %>
                 <%= image_tag image_path, class: "rounded-circle me-3", size: "50x50" %>
               <% else %>
                 <%= image_tag 'no_image.jpg', class: "rounded-circle me-3", size: "50x50" %>
               <% end %>
+
+              <h5 class="mb-0"><%= user.name %></h5>
+              
+            </div>
 
             <div class="text-end mt-2">
               <%= link_to '詳細へ', admin_user_path(user.id), class: "btn btn-sm btn-outline-primary" %>
