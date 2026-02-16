@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">いいね一覧</h2>
+
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      
+      <% if @favorite_posts.any? %>
+        <% @favorite_posts.each do |post| %>
+          <div class="mb-3 p-3 border rounded shadow-sm bg-white">
+            <div class="d-flex align-items-center mb-2">
+              <% if post.user %>
+                <% image_path = post.user.get_profile_image(50, 50) %>
+                <%= image_tag image_path, class: "rounded-circle me-3", size: "50x50" %>
+              <% else %>
+                <%= image_tag 'no_image.jpg', class: "rounded-circle me-3", size: "50x50" %>
+              <% end %>
+              <h5 class="mb-0"><%= post.comedian_name %></h5>
+            </div>
+            
+            <p class="mb-2">ネタ：<%= post.title %></p>
+            <p class="mb-2"><%= simple_format(post.body) %></p>
+            <p><%= render "layouts/star", post: post %></p>
+            
+            <div class="d-flex justify-content-start align-items-center text-muted small">
+              <span class="me-3">
+                <%= post.user.present? ? post.user.name : '未登録ユーザー' %>
+              </span>
+              <span class="mx-2"> | </span>
+              <span>
+                <%= "#{post.post_comments.count} コメント" %>
+              </span>
+              <span class="mx-2"> | </span>
+
+              <% if user_signed_in? && !current_user.guest_user? %>
+                <%= link_to post_favorites_path(post), method: :post, remote: true do %>
+                  <span><%= render "layouts/btn", post: post %></span>
+                <% end %>
+              <% else %>
+                <span>
+                  <%= render "layouts/btn", post: post %>
+                </span>
+              <% end %>
+              <span class="mx-2"> | </span>
+              <span>
+                <% post.tags.each_with_index do |tag, i| %>
+                  <%= link_to tag.name, search_path(content: tag.name, model: "tag", method: "perfect") %><%= ',' unless i == post.tags.size - 1 %>
+                <% end %>
+              </span>
+            </div>
+            
+            <div class="text-end mt-2">
+              <%= link_to '詳細へ', post_path(post.id), class: "btn btn-sm btn-outline-primary" %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-center text-muted">いいねしている投稿はまだありません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

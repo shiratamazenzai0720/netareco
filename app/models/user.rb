@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorited_posts, through: :favorites, source: :post
 
   scope :latest, -> { order(created_at: :desc) }
   scope :old, -> { order(created_at: :asc) }

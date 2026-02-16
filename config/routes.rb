@@ -11,7 +11,8 @@ namespace :admin do
   resources :posts, only: [:index, :show, :destroy, :edit, :update] do
     resources :post_comments, only: [:destroy]
   end
-  resources :users, only: [:index, :show, :edit, :update, :destroy]
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
+  end
   get '/search', to: 'searches#search'
 end
 
@@ -30,7 +31,11 @@ end
       resources :post_comments, only: [:create, :destroy, :update, :edit]
       resource :favorites, only: [:create, :destroy]
     end
-    resources :users, only: [:show, :edit, :update, :destroy, :index]
+    resources :users, only: [:show, :edit, :update, :destroy, :index] do
+      member do
+        get :favorites
+      end
+    end
     get '/search', to: 'searches#search'
     get 'search_tag', to: 'posts#search_tag'
   end

@@ -31,6 +31,11 @@ class Public::UsersController < ApplicationController
     @users = User.all
   end
 
+  def favorites
+    @user = User.find(params[:id])
+    @favorite_posts = @user.favorited_posts.merge(Favorite.order(created_at: :desc))
+  end
+
   private
 
   def is_matching_login_user

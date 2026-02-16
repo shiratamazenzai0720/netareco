@@ -4,9 +4,12 @@
       <% profile_image_path = @user.get_profile_image(100, 100) %>
       <%= image_tag profile_image_path, class: "img-fluid rounded-circle mt-4", size: "100x100" %>
       <h3 class="mb-3 mt-2"><%= @user.name %></h3>
-      <% if @user == current_user %>
-        <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-primary" %></p>
-      <% end %>
+      <div class="px-3 pb-4">
+        <% if @user == current_user %>
+          <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-primary w-100" %></p>
+        <% end %>
+        <p><%= link_to "いいね一覧", favorites_user_path(@user), class: "btn btn-outline-info w-100" %></p>
+      </div>
     </div>
   </div>
 
