@@ -16,7 +16,7 @@ class Admin::PostsController < ApplicationController
   
     def index
       @tag_list = PostTag.all
-      @posts = Post.all
+      @posts = Post.page(params[:page])
     
       if params[:tag_name].present?
         @posts = @posts.joins(:tags).where(tags: { name: params[:tag_name] })
