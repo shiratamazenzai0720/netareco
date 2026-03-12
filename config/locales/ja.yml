@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      post: "投稿"
+    attributes:
+      post:
+        title: "ネタ" # これでtitleが「ネタ」と表示されます
+        comedian_name: "芸人名"
+        body: "感想"
+      user:
+        name: "ユーザーネーム"
+        email: "メールアドレス"
